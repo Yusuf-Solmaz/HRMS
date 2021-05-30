@@ -52,15 +52,15 @@ public class JobSeekerAuthManager extends AuthManager implements JobSeekerAuthSe
 	@Override
 	public boolean checkIdNumber(String tcno) {
 		if (!this.mernisService.isOkay(tcno)) {
-		
+			return false;
 		}
-		else if(!this.jobSeekerDao.findAllByNationalityId(tcno).isEmpty()) {
+		if(!this.jobSeekerDao.findAllByNationalityId(tcno).isEmpty()) {
 			
 			return false;
 		}
 			
         
-         return false;
+         return true;
 	}
 
 	

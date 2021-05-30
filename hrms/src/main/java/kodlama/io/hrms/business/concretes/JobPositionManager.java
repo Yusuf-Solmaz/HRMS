@@ -39,9 +39,11 @@ public class JobPositionManager implements JobPositionService{
 		if(jobPositionAuthService.checkJobPositionName(jobPosition.getJobPosition())) {
 			return new ErrorResult("Bu iş pozisyonu zaten kayıtlı.");
 		}
-		return new SuccessResult("İş arayan hesabı eklendi . Doğrulandı.");
+		else {
+		this.jobDao.save(jobPosition);
+		return new SuccessResult("İş pozisyonu eklendi.");
 		}
-	
+	}
 	
 	@Override
 	public List<JobPosition> getAll() {

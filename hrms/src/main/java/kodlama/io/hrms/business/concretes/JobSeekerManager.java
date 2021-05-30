@@ -73,6 +73,7 @@ public class JobSeekerManager implements JobSeekerService{
 	
 		
 		else {
+		this.jobSeekerDao.save(jobSeeker);
 		return new SuccessResult("İş arayan hesabı eklendi . Doğrulandı.");
 		}
 
