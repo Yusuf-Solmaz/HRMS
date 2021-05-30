@@ -9,7 +9,10 @@ import kodlama.io.hrms.business.abstracts.JobPositionAuthService;
 import kodlama.io.hrms.business.abstracts.JobPositionService;
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
+import kodlama.io.hrms.core.utilities.results.ErrorResult;
+import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
+import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.JobPositionDao;
 import kodlama.io.hrms.entities.concretes.JobPosition;
 
@@ -32,12 +35,12 @@ public class JobPositionManager implements JobPositionService{
 	
 	
 	@Override
-	public DataResult<JobPosition> add(JobPosition jobPosition) {
+	public Result add(JobPosition jobPosition) {
 		if(jobPositionAuthService.checkJobPositionName(jobPosition.getJobPosition())) {
-			return new ErrorDataResult<JobPosition>("Bu iş pozisyonu zaten kayıtlı.");
+			return new ErrorResult("Bu iş pozisyonu zaten kayıtlı.");
 		}
-		return new SuccessDataResult<JobPosition>(this.jobDao.save(jobPosition),"İş arayan hesabı eklendi . Doğrulandı.");
-	}
+		return new SuccessResult("İş arayan hesabı eklendi . Doğrulandı.");
+		}
 	
 	
 	@Override

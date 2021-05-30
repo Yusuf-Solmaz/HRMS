@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import kodlama.io.hrms.core.utilities.results.DataResult;
+import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.JobPosition;
 
 
@@ -14,5 +15,5 @@ public interface JobPositionService {
 
 	List<JobPosition> getAll(); 
 	
-	DataResult<JobPosition> add(JobPosition jobPosition);
+	Result add(JobPosition jobPosition);
 }
