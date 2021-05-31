@@ -1,14 +1,15 @@
 package kodlama.io.hrms.entities.concretes;
 
-import javax.persistence.Column;  
+import javax.persistence.Column;   
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
+ 
 
 @Entity
 @Table(name="employers")
@@ -31,7 +32,8 @@ public class Employer extends User{
 	@Column(name="verify_system") 
 	private boolean verifySystem;
 
-	public Employer(String mail, String password, boolean confirm, String companyName, String phoneNumber, String webSite, boolean verifySystem) {
+	@Autowired
+	public Employer(String webSite, String password, boolean confirm, String companyName, String phoneNumber, String mail, boolean verifySystem) {
 		super(mail, password, confirm);
 		this.companyName = companyName;
 		this.phoneNumber = phoneNumber;

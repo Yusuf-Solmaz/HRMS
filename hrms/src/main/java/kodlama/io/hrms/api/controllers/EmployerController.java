@@ -1,6 +1,6 @@
 package kodlama.io.hrms.api.controllers;
-
-import java.util.List;
+ 
+import java.util.List;  
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +20,7 @@ import kodlama.io.hrms.entities.concretes.Employer;
 public class EmployerController {
 
 	EmployerService employerService;
+	
 	@Autowired
 	public EmployerController(EmployerService employerService)
 	{

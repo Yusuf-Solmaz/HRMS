@@ -23,7 +23,7 @@ import lombok.Data;
 
 
 @Service
-@Data
+
 
 public class JobSeekerManager implements JobSeekerService{
 

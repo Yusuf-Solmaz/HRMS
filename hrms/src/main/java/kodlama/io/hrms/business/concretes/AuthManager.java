@@ -11,8 +11,6 @@ import kodlama.io.hrms.entities.concretes.User;
 
 @Service
 
-
-
 public class AuthManager implements AuthService{
 
 	private UserDao userDao;
@@ -38,13 +36,13 @@ public class AuthManager implements AuthService{
 	public boolean checkEmail(String email) {
 		
 		
-		if(!emailService.isOkay(email)) {
+		if(!this.emailService.isOkay(email)) {
 			
 			System.out.println("Geçersiz email.");
 			return false;
 		}
 		
-		if(!userDao.findByMail(email).isEmpty()) {
+		if(!this.userDao.findByMail(email).isEmpty()) {
 			System.out.println("Email sistemde mevcut.");
 			return false;
 		}
