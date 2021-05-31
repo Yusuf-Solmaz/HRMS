@@ -1,10 +1,15 @@
 package kodlama.io.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;   
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
 public class Employer extends User{
 
 	
@@ -40,5 +46,8 @@ public class Employer extends User{
 		this.webSite = webSite;
 		this.verifySystem = verifySystem;
 	}
+	
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvertisement> jobAdvertisements;
 	
 }

@@ -2,7 +2,7 @@ package kodlama.io.hrms.entities.concretes;
 
 import java.util.List;
 
-import javax.persistence.Column; 
+import javax.persistence.Column;    
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,24 +17,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="job_positions")
+@Table(name="cities")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
-public class JobPosition {
+public class City {
 
-	
-	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-	@Column(name="id")
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "city_id")
+	private int cityId;
 	
-	@Column(name="job_name")
-	private String jobPosition;
+	@Column(name = "city_name")
+	private String cityName;
 
-	@OneToMany(mappedBy = "jobPosition")
+	@OneToMany(mappedBy = "city")
 	private List<JobAdvertisement> jobAdvertisements;
 }
