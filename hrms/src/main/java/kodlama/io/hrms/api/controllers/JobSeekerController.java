@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.hrms.business.abstracts.JobSeekerService;
@@ -33,7 +34,7 @@ public class JobSeekerController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody JobSeeker jobSeeker, String restartPassword)
+	public Result add(@RequestBody JobSeeker jobSeeker,@RequestParam String restartPassword)
 	{
 		return this.jobSeekerService.add(jobSeeker , restartPassword);
 	}

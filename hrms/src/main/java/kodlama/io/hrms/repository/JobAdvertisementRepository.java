@@ -18,6 +18,7 @@ public interface JobAdvertisementRepository extends JpaRepository<JobAdvertiseme
 
 	List<JobAdvertisement>  findByIsActiveTrueOrderByAdvertisementDeadline(); 
 		
+	List<JobAdvertisement>  findByIsActiveTrueOrderByCreationDate();
 	
 	List<JobAdvertisement> getByIsActiveAndEmployer_Id(boolean isActive, int employerId);
 		

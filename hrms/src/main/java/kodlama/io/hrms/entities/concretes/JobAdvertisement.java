@@ -38,7 +38,7 @@ public class JobAdvertisement {
 	@Column(name="open_positions")
 	private Integer openPosition;
 	
-	@Column(name="advertisement_deathline")
+	@Column(name="advertisement_deadline")
 	private Date advertisementDeadline;
 	
 	@Column(name="creation_date")

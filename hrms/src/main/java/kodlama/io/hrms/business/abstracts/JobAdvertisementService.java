@@ -14,8 +14,11 @@ public interface JobAdvertisementService {
 	
 	DataResult<List<JobAdvertisement>> getAllIsActiveJobAdvertisement();
 	
-	DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByAdvertisementDeadline();
+	DataResult<List<JobAdvertisement>> findActiveAdvByAdvertisementDeadline();
 	DataResult<List<JobAdvertisement>> getByIsActiveAndId( int employerId);
+	
+	
+	DataResult<List<JobAdvertisement>>  findActiveAdvByCreationDate();
 	
 	Result changeActiveToPasive(int id);
 	Result update(JobAdvertisement jobAdvertisement);

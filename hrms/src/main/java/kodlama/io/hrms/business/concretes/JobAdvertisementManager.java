@@ -65,10 +65,6 @@ public class JobAdvertisementManager implements JobAdvertisementService{
         return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllIsActiveJobAdvertisementList());
     }
 
-	@Override
-	public DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByAdvertisementDeadline() {
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByAdvertisementDeadline());
-	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getByIsActiveAndId(int employerId) {
@@ -101,5 +97,18 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("İş ilanı güncellendi.");
 	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findActiveAdvByAdvertisementDeadline() {
+		
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByAdvertisementDeadline());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findActiveAdvByCreationDate() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByCreationDate());
+	}
+
+	
 
 }

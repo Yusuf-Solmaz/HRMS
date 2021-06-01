@@ -33,17 +33,17 @@ public class JobAdvertisementController {
 }
 
 @GetMapping("/getAllActiveAdvertisements")
-	public DataResult<List<JobAdvertisement>> getAllIsActiveJobAdvertisementList(){
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisement(){
     	return this.jobAdvertisementService.getAllIsActiveJobAdvertisement();
 	}
 
 @GetMapping("/getbyId")
-	public DataResult<JobAdvertisement> getById(int id){
+	public DataResult<JobAdvertisement> getById(@RequestParam int id){
 		return this.jobAdvertisementService.getById(id);
 	}
 
 @PostMapping("/changeActiveToPasive")
-	public Result changeOpenToClose(int id){
+	public Result changeActiveToPasive(@RequestParam int id){
 		return this.jobAdvertisementService.changeActiveToPasive(id);
 }
 
@@ -53,16 +53,19 @@ public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementList(){
 }*/
 
 @GetMapping("/findAllJobAdvByPublished")
-public DataResult<List<JobAdvertisement>> findByIsOpenTrueOrderByDeadline (){
-	return this.jobAdvertisementService.findByIsActiveTrueOrderByAdvertisementDeadline() ;
+public DataResult<List<JobAdvertisement>> findActiveJobAdvertisementByDeadline (){
+	return this.jobAdvertisementService.findActiveAdvByAdvertisementDeadline() ;
 }
 
 @GetMapping("/getAllActiveJobAdvByEmployer")
-public DataResult<List<JobAdvertisement>> getByIsOpenJobAdvertisementOrderByEmployer_Id(@RequestParam int employer_id){
+public DataResult<List<JobAdvertisement>> getActiveJobAdvertisementByEmployer_Id(@RequestParam int employer_id){
 	return this.jobAdvertisementService.getByIsActiveAndId(employer_id);
 }
 
-
+@GetMapping("/findAllJobAdvByPublished")
+public DataResult<List<JobAdvertisement>> findActiveJobAdvertisementByCreationDate (){
+	return this.jobAdvertisementService.findActiveAdvByCreationDate() ;
+}
 
 
 
