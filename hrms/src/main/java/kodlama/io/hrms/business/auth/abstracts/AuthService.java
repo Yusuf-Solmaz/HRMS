@@ -1,4 +1,4 @@
-package kodlama.io.hrms.business.abstracts;
+package kodlama.io.hrms.business.auth.abstracts;
 
 
 
@@ -8,9 +8,9 @@ public interface AuthService {
 
 	
 	boolean checkEmail(String email);
-	
-	
-	boolean checkRestartPassword(String restartPassword,User user);
-	//boolean checkPassword(User user,String restartPassword);
 	boolean isNullRestartPassword(String restartPassword);
+	boolean checkRestartPassword(String restartPassword,User user);
+	
+	//boolean checkPassword(User user,String restartPassword);
+	
 }

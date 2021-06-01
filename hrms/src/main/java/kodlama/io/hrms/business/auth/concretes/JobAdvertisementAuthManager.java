@@ -1,8 +1,8 @@
-package kodlama.io.hrms.business.concretes;
+package kodlama.io.hrms.business.auth.concretes;
 
-import org.springframework.stereotype.Service;  
+import org.springframework.stereotype.Service;
 
-import kodlama.io.hrms.business.abstracts.JobAdvertisementAuthService;
+import kodlama.io.hrms.business.auth.abstracts.JobAdvertisementAuthService;
 import kodlama.io.hrms.entities.concretes.JobAdvertisement;
 
 @Service
@@ -18,7 +18,7 @@ public class JobAdvertisementAuthManager implements JobAdvertisementAuthService{
 
     @Override
     public boolean checkOpenPositions(JobAdvertisement jobAdvertisement) {
-        if(jobAdvertisement.getOpenPosition().equals(null)) {
+        if(jobAdvertisement.getOpenPosition().equals(null) || jobAdvertisement.getOpenPosition().equals(0)) {
             return false;
             }
             return true;

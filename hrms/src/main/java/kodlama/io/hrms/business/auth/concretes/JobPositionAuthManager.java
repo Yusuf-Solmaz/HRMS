@@ -1,9 +1,9 @@
-package kodlama.io.hrms.business.concretes;
+package kodlama.io.hrms.business.auth.concretes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlama.io.hrms.business.abstracts.JobPositionAuthService;
+import kodlama.io.hrms.business.auth.abstracts.JobPositionAuthService;
 import kodlama.io.hrms.dataAccess.abstracts.JobPositionDao;
 
 

@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlama.io.hrms.business.abstracts.JobPositionAuthService;
 import kodlama.io.hrms.business.abstracts.JobPositionService;
-
+import kodlama.io.hrms.business.auth.abstracts.JobPositionAuthService;
 import kodlama.io.hrms.core.utilities.results.ErrorResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 

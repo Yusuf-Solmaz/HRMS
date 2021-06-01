@@ -1,4 +1,4 @@
-package kodlama.io.hrms.business.abstracts;
+package kodlama.io.hrms.business.auth.abstracts;
 
 import kodlama.io.hrms.entities.concretes.JobAdvertisement;
 

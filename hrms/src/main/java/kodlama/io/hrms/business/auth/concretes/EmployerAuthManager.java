@@ -1,9 +1,9 @@
-package kodlama.io.hrms.business.concretes;
+package kodlama.io.hrms.business.auth.concretes; 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Service;
 
-import kodlama.io.hrms.business.abstracts.EmployerAuthService; 
+import kodlama.io.hrms.business.auth.abstracts.EmployerAuthService;
 import kodlama.io.hrms.core.utilities.adapter.EmailService;
 import kodlama.io.hrms.dataAccess.abstracts.UserDao;
 import kodlama.io.hrms.entities.concretes.Employer;
