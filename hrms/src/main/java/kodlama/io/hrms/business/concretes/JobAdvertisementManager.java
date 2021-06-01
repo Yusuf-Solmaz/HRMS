@@ -31,7 +31,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 
 	@Override
 	public Result add(JobAdvertisement jobAdvertisement) {
-		  if(!jobAdvertisementAuthManager.checkJobDescription(jobAdvertisement)) {
+		  /*if(!jobAdvertisementAuthManager.checkJobDescription(jobAdvertisement)) {
 	            return new ErrorResult("İş tanımı boş olamaz!");
 	        }
 	        else if(!jobAdvertisementAuthManager.checkOpenPositions(jobAdvertisement)) {
@@ -45,6 +45,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	        }
 	        else if(!jobAdvertisementAuthManager.checkSalary(jobAdvertisement)) {
 	            return new ErrorResult("Maksimum maaş minumum maaştan küçük olamaz!");
+	        }*/
+		  if (!jobAdvertisementAuthManager.CheckField(jobAdvertisement)) {
+	            return new ErrorResult("Max-Min maaş dışında boş alan bırakılamaz");
 	        }
 	        else {
 	        	this.jobAdvertisementDao.save(jobAdvertisement);

@@ -48,4 +48,15 @@ public class JobAdvertisementAuthManager implements JobAdvertisementAuthService{
             return true;
     }
 
+	@Override
+	public boolean CheckField(JobAdvertisement jobAdvertisement) {
+		
+	        if (jobAdvertisement.getJobPosition() != null && jobAdvertisement.getJobDescription() != null && jobAdvertisement.getCity() != null
+	                && jobAdvertisement.getCreationDate() != null && jobAdvertisement.getOpenPosition() != 0) {
+	            return true;
+	        }
+	        return false;
+	    
+	}
+
 }
