@@ -21,8 +21,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="job_advertisements")
 @Data
-@EqualsAndHashCode(callSuper=false)
-
+//@EqualsAndHashCode(callSuper=false)
+@AllArgsConstructor
 @NoArgsConstructor
 
 public class JobAdvertisement {
@@ -44,7 +44,7 @@ public class JobAdvertisement {
 	@Column(name="creation_date")
 	private java.util.Date creationDate;
 	
-	@Column(name="is_active")
+	@Column(name="is_active",columnDefinition = "boolean default true")
 	private boolean isActive;
 	
 	@Column(name="max_salary")
@@ -65,22 +65,7 @@ public class JobAdvertisement {
     @JoinColumn(name="employer_id")
     private Employer employer;
 
-	public JobAdvertisement(int jobAdvertisementId, String jobDescription, Integer openPosition,
-			Date advertisementDeadline, java.util.Date creationDate, boolean isActive, int maxSalary, int minSalary,
-			City city, JobPosition jobPosition, Employer employer) {
-		super();
-		this.jobAdvertisementId = jobAdvertisementId;
-		this.jobDescription = jobDescription;
-		this.openPosition = openPosition;
-		this.advertisementDeadline = advertisementDeadline;
-		this.creationDate = creationDate;
-		this.isActive = isActive;
-		this.maxSalary = maxSalary;
-		this.minSalary = minSalary;
-		this.city = city;
-		this.jobPosition = jobPosition;
-		this.employer = employer;
-	}
 	
+
     
 }

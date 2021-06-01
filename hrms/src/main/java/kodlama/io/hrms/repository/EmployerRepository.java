@@ -10,4 +10,6 @@ import kodlama.io.hrms.entities.concretes.JobSeeker;
 public interface  EmployerRepository  extends  JpaRepository<Employer, Integer>{
 
 	List<Employer> findAllByPhoneNumber(String phoneNumber);
+	
+	
 }

@@ -1,12 +1,17 @@
 package kodlama.io.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service;
 
 import kodlama.io.hrms.business.abstracts.JobAdvertisementService;
 import kodlama.io.hrms.business.auth.concretes.JobAdvertisementAuthManager;
+import kodlama.io.hrms.core.utilities.results.DataResult;
+import kodlama.io.hrms.core.utilities.results.ErrorDataResult;
 import kodlama.io.hrms.core.utilities.results.ErrorResult;
 import kodlama.io.hrms.core.utilities.results.Result;
+import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlama.io.hrms.entities.concretes.JobAdvertisement;
@@ -46,6 +51,52 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	        	return new SuccessResult("İlan ekleme başarılı.");
 	        
 	        }
+	}
+
+	public DataResult<List<JobAdvertisement>> getAll() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll());
+	}
+
+	@Override
+    public DataResult<List<JobAdvertisement>> getAllIsActiveJobAdvertisement() {
+        return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllIsActiveJobAdvertisementList());
+    }
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByAdvertisementDeadline() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByAdvertisementDeadline());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsActiveAndId(int employerId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByIsActiveAndEmployer_Id(true, employerId));
+	}
+
+	@Override
+	public Result changeActiveToPasive(int id) {
+		if (getById(id) == null) {
+			return new ErrorResult("Böyle bir iş ilanı bulunamadı.");
+
+		}
+		if (getById(id).getData().isActive() == false) {
+			return new ErrorResult("");
+		}
+
+		JobAdvertisement jobAdvertisement = getById(id).getData();
+		jobAdvertisement.setActive(false);
+		update(jobAdvertisement);
+		return new SuccessResult("İş ilanı kapatıldı.");
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getById(int id) {
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByJobAdvertisementId(id));
+	}
+
+	@Override
+	public Result update(JobAdvertisement jobAdvertisement) {
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("İş ilanı güncellendi.");
 	}
 
 }

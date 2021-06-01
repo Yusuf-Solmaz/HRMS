@@ -1,9 +1,23 @@
 package kodlama.io.hrms.business.abstracts;
 
-import kodlama.io.hrms.core.utilities.results.Result; 
+import java.util.List;
+
+import kodlama.io.hrms.core.utilities.results.DataResult;
+import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.JobAdvertisement;
 
 public interface JobAdvertisementService {
 
 	Result add(JobAdvertisement jobAdvertisement);
+	
+	DataResult<List<JobAdvertisement>> getAll();
+	
+	DataResult<List<JobAdvertisement>> getAllIsActiveJobAdvertisement();
+	
+	DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByAdvertisementDeadline();
+	DataResult<List<JobAdvertisement>> getByIsActiveAndId( int employerId);
+	
+	Result changeActiveToPasive(int id);
+	Result update(JobAdvertisement jobAdvertisement);
+	DataResult<JobAdvertisement> getById(int id);	
 }
