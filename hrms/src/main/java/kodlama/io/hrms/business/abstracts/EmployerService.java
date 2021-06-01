@@ -15,4 +15,5 @@ public interface EmployerService {
 	Result add(Employer employer , String restartPassword);
 	
 	DataResult<List<Employer>> getAll();
+
 }
