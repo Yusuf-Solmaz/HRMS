@@ -38,12 +38,12 @@ public class JobAdvertisementController {
 	}
 
 @GetMapping("/getbyId")
-	public DataResult<JobAdvertisement> getById(@RequestParam int id){
+	public DataResult<JobAdvertisement> getById(int id){
 		return this.jobAdvertisementService.getById(id);
 	}
 
 @PostMapping("/changeActiveToPasive")
-	public Result changeActiveToPasive(@RequestParam int id){
+	public Result changeActiveToPasive( int id){
 		return this.jobAdvertisementService.changeActiveToPasive(id);
 }
 
@@ -52,7 +52,7 @@ public DataResult<List<JobAdvertisement>> getAllOpenJobAdvertisementList(){
 	return this.jobAdvertisementService.getAllIsActiveJobAdvertisement();
 }*/
 
-@GetMapping("/findAllJobAdvByPublished")
+@GetMapping("/findAllJobAdvByDeadline")
 public DataResult<List<JobAdvertisement>> findActiveJobAdvertisementByDeadline (){
 	return this.jobAdvertisementService.findActiveAdvByAdvertisementDeadline() ;
 }
@@ -62,7 +62,7 @@ public DataResult<List<JobAdvertisement>> getActiveJobAdvertisementByEmployer_Id
 	return this.jobAdvertisementService.getByIsActiveAndId(employer_id);
 }
 
-@GetMapping("/findAllJobAdvByPublished")
+@GetMapping("/findAllJobAdvByCreationDate")
 public DataResult<List<JobAdvertisement>> findActiveJobAdvertisementByCreationDate (){
 	return this.jobAdvertisementService.findActiveAdvByCreationDate() ;
 }
