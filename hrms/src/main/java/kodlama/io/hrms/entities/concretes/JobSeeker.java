@@ -1,11 +1,15 @@
 package kodlama.io.hrms.entities.concretes;
 
-import java.sql.Date;    
+import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -45,6 +49,10 @@ public class JobSeeker extends User{
 		this.birthDate = birthDate;
 		
 	}
+	
+	@OneToMany(mappedBy = "jobSeeker")
+    @JsonIgnore()
+    private List<JobSeekerImage> jobSeekerImages;
 	
 	
 }
