@@ -13,4 +13,7 @@ public interface JobSeekerRepository  extends JpaRepository<JobSeeker, Integer> 
 	
 	List<JobSeeker> findAllByNationalityId(String tcno);
 
+	//List<JobSeeker> findAllById(int id);
+	
+	JobSeeker getById(int id);
 }

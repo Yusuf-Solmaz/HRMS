@@ -4,14 +4,11 @@ import java.util.List;
 
 import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
-import kodlama.io.hrms.entities.concretes.cv.CvSkill;
 import kodlama.io.hrms.entities.concretes.cv.Skill;
 
-public interface CvSkillService {
+public interface SkillService {
 
-	DataResult<List<CvSkill>> getAll();
+	DataResult<List<Skill>> getAll();
 	
-	DataResult<List<CvSkill>> getByCvId(int id);
-	
-	Result addSkillToCv(Skill skill, int jobSeekerId); 	
+	Result add(Skill skill);
 }

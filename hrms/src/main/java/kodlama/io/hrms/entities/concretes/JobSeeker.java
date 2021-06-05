@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import kodlama.io.hrms.entities.concretes.cv.Cv;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -36,12 +37,12 @@ public class JobSeeker extends User{
 	private String lastName;
 	
 	@Column(name="birth_date") 
-	private Date birthDate;
+	private String birthDate;
 
 
 	
 	public JobSeeker( String mail, String password, boolean confirm, String nationalityId, String firstName,
-			String lastName, Date birthDate ) {
+			String lastName, String birthDate ) {
 		super( mail, password, confirm);
 		this.nationalityId = nationalityId;
 		this.firstName = firstName;
@@ -50,9 +51,11 @@ public class JobSeeker extends User{
 		
 	}
 	
+	
+	
 	@OneToMany(mappedBy = "jobSeeker")
     @JsonIgnore()
-    private List<JobSeekerImage> jobSeekerImages;
+    private List<Cv> cv;
 	
 	
 }

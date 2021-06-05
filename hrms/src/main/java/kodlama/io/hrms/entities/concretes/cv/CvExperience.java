@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Data
 @Entity
@@ -37,13 +40,17 @@ public class CvExperience {
     private String position;
 
     @Column(name = "start_date")    
-    private LocalDate startDate;
+    private Date startDate;
 
     @Column(name = "leave_date")
-    private LocalDate leaveDate;
+    private Date leaveDate;
     
+    @Column(name="is_quited")
+    private boolean isQuited;
+    
+    @JsonProperty(access = Access.WRITE_ONLY)
     @ManyToOne()
-    @JsonIgnore()
+    @JsonIgnoreProperties()
     @JoinColumn(name="cv_id")
     private Cv cv;
 }
