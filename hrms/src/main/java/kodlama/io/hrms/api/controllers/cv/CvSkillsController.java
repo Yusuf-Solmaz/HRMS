@@ -34,7 +34,7 @@ public class CvSkillsController {
 	}
 	
 	@GetMapping("/getByCandidateCvId")
-	public DataResult<List< CvSkill>> getByCandidateCvId(int id) {
+	public DataResult<List< CvSkill>> getByCvsId(int id) {
 		return this.cvSkillService.getByCvId(id);
 	}
 	

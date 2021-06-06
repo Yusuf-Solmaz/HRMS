@@ -28,13 +28,13 @@ public class CvEducationController {
 	}
 	
 	@GetMapping("/getByCandidateCvId")
-	public DataResult<List<CvEducation>> getByCandidateCvId(@RequestParam int id) {
+	public DataResult<List<CvEducation>> getByJobSeekerCvId(@RequestParam int id) {
 		return this.cvEducationService.getByCvId(id);
 	}
 	
 	@PostMapping("/update")
-	public DataResult<CvEducation> update(@RequestBody CvEducation candidateSchool) {
-		return this.cvEducationService.update(candidateSchool);
+	public DataResult<CvEducation> update(@RequestBody CvEducation cvEducation) {
+		return this.cvEducationService.update(cvEducation);
 	}
 	
 	@PostMapping("/add")

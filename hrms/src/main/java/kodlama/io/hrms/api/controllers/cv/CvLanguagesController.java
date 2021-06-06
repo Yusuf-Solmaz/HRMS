@@ -36,13 +36,13 @@ public class CvLanguagesController {
 	}
 	
 	@GetMapping("/getByJobSeekerCvId")
-	public DataResult<List<CvLanguage>> getByCandidateCvId(int id) {
+	public DataResult<List<CvLanguage>> getByCvsId(int id) {
 		return this.cvLanguageService.getByCvId(id);
 	}
 	
 	
 	@PostMapping("/addLanguageToCv")
-	public Result addLanguageToCv(@RequestBody Language language, @RequestParam int candidateId) {
-		return this.cvLanguageService.addLanguageToCv(language, candidateId);
+	public Result addLanguageToCv(@RequestBody Language language, @RequestParam int jobSeekerId) {
+		return this.cvLanguageService.addLanguageToCv(language, jobSeekerId);
 	}
 }

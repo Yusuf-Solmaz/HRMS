@@ -51,7 +51,7 @@ public class CvsController {
 	}
 	
 	@GetMapping("/getByJobSeekerId")
-	public DataResult<List<Cv>> getByCandidateId(@RequestParam int id) {
+	public DataResult<List<Cv>> getByJobSeekersId(@RequestParam int id) {
 		return this.cvService.getByJobSeekerId(id);
 	}
 	

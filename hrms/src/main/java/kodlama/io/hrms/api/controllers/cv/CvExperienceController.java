@@ -34,7 +34,7 @@ public class CvExperienceController {
 	}
 	
 	@GetMapping("/getCvExperiencesByStartDateDesc")
-	public DataResult<List<CvExperience>> orderCandidateJobExperiencesByStartingDateDesc(int id) {
+	public DataResult<List<CvExperience>> orderCvExperienceByStarDateDesc(int id) {
 		return this.cvExperienceService.orderCvExperiencesByStartDateDesc(id);
 	}
 	
