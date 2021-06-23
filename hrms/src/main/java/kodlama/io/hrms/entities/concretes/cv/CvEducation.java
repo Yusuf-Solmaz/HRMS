@@ -54,4 +54,12 @@ public class CvEducation {
     @JsonIgnore()
     @JoinColumn(name="cv_id")
     private Cv cv;
+
+	public CvEducation(Cv cv) {
+		super();
+		this.cv = cv;
+	}
+    
+    
+    
 }

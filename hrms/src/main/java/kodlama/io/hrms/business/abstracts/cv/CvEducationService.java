@@ -14,7 +14,7 @@ public interface CvEducationService {
 	
 	DataResult<CvEducation> update(CvEducation cvEducation);
 	
-	Result add(CvEducation cavSchool);
+	Result addEducationTocv(CvEducation cvSchool,int jobSeekerId);
 	
 	DataResult<List<CvEducation>> orderCvEducationsByGraduationYearDesc(int id);
 }

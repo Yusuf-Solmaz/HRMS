@@ -47,6 +47,19 @@ public class Employer extends User{
 		this.verifySystem = verifySystem;
 	}
 	
+	
+	
+	public Employer(int id,String mail, String password, boolean confirm, String companyName, String phoneNumber,
+			String webSite, boolean verifySystem) {
+		super(id,mail, password, confirm);
+		this.companyName = companyName;
+		this.phoneNumber = phoneNumber;
+		this.webSite = webSite;
+		this.verifySystem = verifySystem;
+	}
+
+
+
 	@OneToMany(mappedBy = "employer")
 	private List<JobAdvertisement> jobAdvertisements;
 	

@@ -48,9 +48,8 @@ public class CvExperience {
     @Column(name="is_quited")
     private boolean isQuited;
     
-    @JsonProperty(access = Access.WRITE_ONLY)
-    @ManyToOne()
-    @JsonIgnoreProperties()
+    @ManyToOne(targetEntity = Cv.class)
+    @JsonIgnore()
     @JoinColumn(name="cv_id")
     private Cv cv;
 }

@@ -1,5 +1,6 @@
 package kodlama.io.hrms.business.concretes;
 
+import java.time.LocalDate; 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired; 
@@ -14,10 +15,17 @@ import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.core.utilities.results.SuccessDataResult;
 import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.JobAdvertisementDao;
+import kodlama.io.hrms.entities.concretes.City;
+import kodlama.io.hrms.entities.concretes.Employer;
 import kodlama.io.hrms.entities.concretes.JobAdvertisement;
+import kodlama.io.hrms.entities.concretes.JobPosition;
+import kodlama.io.hrms.entities.concretes.TypeOfWorking;
+import kodlama.io.hrms.entities.concretes.WayOfWorking;
+import kodlama.io.hrms.entities.dtos.JobPostingAddDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{
+
 
 	private JobAdvertisementDao jobAdvertisementDao;
 	private JobAdvertisementAuthManager jobAdvertisementAuthManager;
@@ -25,36 +33,32 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Autowired
 	public JobAdvertisementManager(JobAdvertisementAuthManager jobAdvertisementAuthManager,JobAdvertisementDao jobAdvertisementDao) {
 		super();
+		
 		this.jobAdvertisementAuthManager = jobAdvertisementAuthManager;
 		this.jobAdvertisementDao=jobAdvertisementDao;
 	}
 
 	@Override
-	public Result add(JobAdvertisement jobAdvertisement) {
-		  /*if(!jobAdvertisementAuthManager.checkJobDescription(jobAdvertisement)) {
-	            return new ErrorResult("İş tanımı boş olamaz!");
-	        }
-	        else if(!jobAdvertisementAuthManager.checkOpenPositions(jobAdvertisement)) {
-	            return new ErrorResult("Açık Pozisyon Sayısını Giriniz");
-	        }
-	        else if(!jobAdvertisementAuthManager.checkAdvertisementsDeadline(jobAdvertisement)) {
-	            return new ErrorResult("Geçerli bir son başvuru tarihi giriniz!");
-	        }
-	        else if(!jobAdvertisementAuthManager.checkCreationDate(jobAdvertisement)) {
-	            return new ErrorResult("Oluşturulma Tarihi Boş Bırakılamaz");
-	        }
-	        else if(!jobAdvertisementAuthManager.checkSalary(jobAdvertisement)) {
-	            return new ErrorResult("Maksimum maaş minumum maaştan küçük olamaz!");
-	        }*/
-		  if (!jobAdvertisementAuthManager.CheckField(jobAdvertisement)) {
-	            return new ErrorResult("Max-Min maaş dışında boş alan bırakılamaz");
-	        }
-	        else {
-	        	this.jobAdvertisementDao.save(jobAdvertisement);
-	        	return new SuccessResult("İlan ekleme başarılı.");
-	        
-	        }
+	public Result add(JobPostingAddDto jobPostingAddDto) {
+		JobAdvertisement jobAdvertisement = new JobAdvertisement(0, jobPostingAddDto.getJobDescription(), jobPostingAddDto.getMinSalary(),
+				jobPostingAddDto.getMaxSalary(), jobPostingAddDto.getOpenPositionCount(),
+				jobPostingAddDto.getApplicationDeadline(), false, null,
+				new Employer(jobPostingAddDto.getEmployerId(), null, null, false, null, null, null, false),
+				new JobPosition(jobPostingAddDto.getJobPositionId(), null, null),
+				new City(jobPostingAddDto.getCityId(), null, null),
+				new TypeOfWorking(jobPostingAddDto.getTypeOfWorkingId(), null, null),
+				new WayOfWorking(jobPostingAddDto.getWayOfWorkingId(), null, null));
+				
+		
+
+		
+		
+		jobAdvertisement.setActive(false);
+		jobAdvertisement.setCreationDate(LocalDate.now());
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.save(jobAdvertisement),"İş ilanı eklendi!");
+		
 	}
+
 
 	public DataResult<List<JobAdvertisement>> getAll() {
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll());
@@ -109,6 +113,44 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByCreationDate());
 	}
 
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllIsPasiveJobAdvertisement() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getAllPasiveJobAdvertisementList());
+	}
+
+	@Override
+	public Result changePasiveToActive(int id) {
+		if (getById(id) == null) {
+			return new ErrorResult("There is no such job advertisement");
+
+		}
+		if (getById(id).getData().isActive() == true) {
+			return new ErrorResult("There job advertisement is already opened.");
+		}
+
+		JobAdvertisement jobAdvertisement = getById(id).getData();
+		jobAdvertisement.setActive(true);
+		update(jobAdvertisement);
+		return new SuccessResult("Job advertisement has been successfully closed.");
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrueOrderByAdvertisementsDeadline() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrueOrderByAdvertisementDeadline());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveFalseOrderByAdvertisementsDeadline() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveFalseOrderByAdvertisementDeadline());
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getByIsOpenAndId(int employerId) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByIsActiveAndEmployer_Id(true, employerId));
+	}
+
+	
+	
 	
 
 }

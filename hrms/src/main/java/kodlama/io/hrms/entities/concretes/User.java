@@ -9,6 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,5 +42,15 @@ public class User {
 		this.password = password;
 		this.confirm = confirm;
 	}
-	//deneme
+
+	@Autowired
+	public User(int id, String mail, String password, boolean confirm) {
+		super();
+		this.id = id;
+		this.mail = mail;
+		this.password = password;
+		this.confirm = confirm;
+	}
+	
+	
 }

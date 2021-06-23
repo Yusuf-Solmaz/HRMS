@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/CvEducations")
+@CrossOrigin
 public class CvEducationController {
 
     private CvEducationService cvEducationService;
@@ -37,9 +38,9 @@ public class CvEducationController {
 		return this.cvEducationService.update(cvEducation);
 	}
 	
-	@PostMapping("/add")
-	public Result add(@RequestBody CvEducation cvEducation) {
-		return this.cvEducationService.add(cvEducation);
+	@PostMapping("/addToCv")
+	public Result add(@RequestBody CvEducation cvEducation,@RequestParam int jobSeekerId) {
+		return this.cvEducationService.addEducationTocv(cvEducation,jobSeekerId);
 	}
 	
 	@GetMapping("/getCandidateSchoolsByGraduationDateDesc")

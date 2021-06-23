@@ -1,8 +1,9 @@
 package kodlama.io.hrms.api.controllers;
- 
-import java.util.List;  
+  
+import java.util.List;   
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,10 +16,12 @@ import kodlama.io.hrms.core.utilities.results.DataResult;
 import kodlama.io.hrms.core.utilities.results.Result;
 import kodlama.io.hrms.entities.concretes.Employer;
 import kodlama.io.hrms.entities.concretes.JobAdvertisement;
+import kodlama.io.hrms.entities.dtos.JobPostingAddDto;
 
 
 @RestController
 @RequestMapping("/api/employers")
+@CrossOrigin
 public class EmployerController {
 
 	EmployerService employerService;
@@ -44,9 +47,9 @@ public class EmployerController {
 	}
 	
 	@PostMapping("/add/advertisemet")
-	public Result add(@RequestBody JobAdvertisement jobAdvertisement)
+	public Result add(@RequestBody JobPostingAddDto jobPostingAddDto)
 	{
-		return this.jobAdvertisementService.add(jobAdvertisement);
+		return this.jobAdvertisementService.add(jobPostingAddDto);
 	}
 	
 }

@@ -9,7 +9,10 @@ import kodlama.io.hrms.core.utilities.results.SuccessResult;
 import kodlama.io.hrms.dataAccess.abstracts.JobSeekerDao;
 import kodlama.io.hrms.dataAccess.abstracts.cv.CvDao;
 import kodlama.io.hrms.dataAccess.abstracts.cv.CvEducationDao;
+import kodlama.io.hrms.entities.concretes.JobSeeker;
+import kodlama.io.hrms.entities.concretes.cv.Cv;
 import kodlama.io.hrms.entities.concretes.cv.CvEducation;
+import kodlama.io.hrms.entities.concretes.cv.CvSkill;
 
 import java.util.List;
 
@@ -70,8 +73,16 @@ public class CvEducationManager implements CvEducationService{
 	}
 
 	@Override
-	public Result add(CvEducation cvSchool) {
-		cvEducationDao.save(cvSchool);
+	public Result addEducationTocv(CvEducation cvSchool,int jobSeekerId) {
+		JobSeeker jobSeeker = this.jobSeekerDao.getById(jobSeekerId);
+		
+		Cv cv = this.cvDao.getByJobSeeker(jobSeeker);
+		
+		cvSchool.setCv(cv);
+		
+		
+		this.cvEducationDao.save(cvSchool);
+		
 		
 		return new SuccessResult("Eğitim eklendi.");
 	}
