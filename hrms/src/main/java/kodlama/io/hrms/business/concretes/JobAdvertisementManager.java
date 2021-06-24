@@ -47,6 +47,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 				new JobPosition(jobPostingAddDto.getJobPositionId(), null, null),
 				new City(jobPostingAddDto.getCityId(), null, null),
 				new TypeOfWorking(jobPostingAddDto.getTypeOfWorkingId(), null, null),
+				
 				new WayOfWorking(jobPostingAddDto.getWayOfWorkingId(), null, null));
 				
 		
